@@ -10,6 +10,13 @@ class Posts extends React.Component {
     this.props.fetchPosts();
   }
 
+  // life cycle method replacement for componentWillRecieveProps()
+  getDerivedStateFromProps(nextProps) {
+    if (nextProps.newPost) {
+      this.props.posts.unshift(nextProps.newPost);
+    }
+  }
+
   render() {
     console.log(this.props);
     const posts = this.props.posts.map((post) => {
@@ -36,7 +43,7 @@ Posts.propTypes = {
   newPost: PropTypes.object,
 }
 
-// state.posts is being calles that because that's what we named it in our combined reducers
+// state.posts is being called that because that's what we named it in our combined reducers
 const mapStateToProps = (state) => ({
   posts: state.posts.items,
   newPost: state.posts.item,

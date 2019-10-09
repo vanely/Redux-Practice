@@ -26,6 +26,10 @@ class PostForm extends React.Component {
     };
 
     this.props.createPost(post);
+    this.setState({
+      title: '',
+      body: '',
+    });
   }
 
   render() {
@@ -33,7 +37,7 @@ class PostForm extends React.Component {
     return (
       <div>
         <h1>Add Post</h1>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <div>
             <label>Title: </label>
             <input onChange={this.handleChange} type="text" name="title" value={this.state.title}/>
