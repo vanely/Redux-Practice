@@ -44,9 +44,11 @@ Posts.propTypes = {
 }
 
 // state.posts is being called that because that's what we named it in our combined reducers
+// the combined reducer that was created as posts is the bridge to accessing the state
 const mapStateToProps = (state) => ({
   posts: state.posts.items,
   newPost: state.posts.item,
 });
 
+// connect(mapStateToProps, mapDispatchToProps, mergeProps, options)(Component)
 export default connect(mapStateToProps, {fetchPosts})(Posts);
